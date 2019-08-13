@@ -4,17 +4,20 @@
     "type": "project",
 	"keywords": [
         "framework",
+	"mvc",
+	"oops",
+	"php framework",
         "ovenmvc"
 	],
-    "authors": [
+   	 "authors": [
         {
             "name": "Sandeep Kumar",
             "email": "ki.sandeep11@gmail.com"
-		}
-	],
+	}
+    	],
 	"minimum-stability": "dev",
 	"prefer-stable": true,
-    "require": {
+    	"require": {
 		"php": ">=5.4.0",
 		"evolution/codeigniterdb":  "dev-master",
 		"phpmailer/phpmailer": "^6.0",
