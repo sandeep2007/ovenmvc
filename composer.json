@@ -1,0 +1,23 @@
+{
+    "name": "sandeep2007/ovenmvc",
+    "description": "The OvenMVC framework",
+    "type": "project",
+	"keywords": [
+        "framework",
+        "ovenmvc"
+	],
+    "authors": [
+        {
+            "name": "Sandeep Kumar",
+            "email": "ki.sandeep11@gmail.com"
+		}
+	],
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+    "require": {
+		"php": ">=5.4.0",
+		"evolution/codeigniterdb":  "dev-master",
+		"phpmailer/phpmailer": "^6.0",
+		"rakit/validation": "^1.2"
+	}
+}
