@@ -19,8 +19,7 @@ spl_autoload_register(function ($resource) {
 class Bootstrap
 {
     public function __construct()
-    {
-        
+    {  
         $url_ = $_SERVER['REQUEST_URI'];
         $sn_ = basename($_SERVER['SCRIPT_NAME']);
         $url_ = $_SERVER['PHP_SELF'];
@@ -123,7 +122,6 @@ class Bootstrap
                 call_user_func(array($instance_, $m_));
             }
         } else {
-            //echo 'Class ' . $c_ . ' not found';
             echo 'Invalid routes check request uri first';
         }
     }
