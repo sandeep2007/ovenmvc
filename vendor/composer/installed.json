@@ -1,0 +1,162 @@
+[
+    {
+        "name": "evolution/codeigniterdb",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/evolutionscript/codeigniter-database-standalone.git",
+            "reference": "4cd03750f0e42b5df555cf592700548e58076ac2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/evolutionscript/codeigniter-database-standalone/zipball/4cd03750f0e42b5df555cf592700548e58076ac2",
+            "reference": "4cd03750f0e42b5df555cf592700548e58076ac2",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2015-12-24T07:27:53+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Evolution\\CodeIgniterDB\\": "src/"
+            },
+            "files": [
+                "src/DB.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "EvolutionScript",
+                "homepage": "http://www.evolutionscript.com/"
+            }
+        ],
+        "description": "Use the database library separately from CodeIgniter 3",
+        "homepage": "https://github.com/evolutionscript/codeigniter-database-standalone",
+        "keywords": [
+            "codeigniter",
+            "database",
+            "mysql",
+            "mysqli",
+            "pdo"
+        ]
+    },
+    {
+        "name": "phpmailer/phpmailer",
+        "version": "v6.0.7",
+        "version_normalized": "6.0.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PHPMailer/PHPMailer.git",
+            "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/0c41a36d4508d470e376498c1c0c527aa36a2d59",
+            "reference": "0c41a36d4508d470e376498c1c0c527aa36a2d59",
+            "shasum": ""
+        },
+        "require": {
+            "ext-ctype": "*",
+            "ext-filter": "*",
+            "php": ">=5.5.0"
+        },
+        "require-dev": {
+            "doctrine/annotations": "1.2.*",
+            "friendsofphp/php-cs-fixer": "^2.2",
+            "phpdocumentor/phpdocumentor": "2.*",
+            "phpunit/phpunit": "^4.8 || ^5.7",
+            "zendframework/zend-eventmanager": "3.0.*",
+            "zendframework/zend-i18n": "2.7.3",
+            "zendframework/zend-serializer": "2.7.*"
+        },
+        "suggest": {
+            "ext-mbstring": "Needed to send email in multibyte encoding charset",
+            "hayageek/oauth2-yahoo": "Needed for Yahoo XOAUTH2 authentication",
+            "league/oauth2-google": "Needed for Google XOAUTH2 authentication",
+            "psr/log": "For optional PSR-3 debug logging",
+            "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
+            "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
+        },
+        "time": "2019-02-01T15:04:28+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "PHPMailer\\PHPMailer\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1"
+        ],
+        "authors": [
+            {
+                "name": "Jim Jagielski",
+                "email": "jimjag@gmail.com"
+            },
+            {
+                "name": "Marcus Bointon",
+                "email": "phpmailer@synchromedia.co.uk"
+            },
+            {
+                "name": "Andy Prevost",
+                "email": "codeworxtech@users.sourceforge.net"
+            },
+            {
+                "name": "Brent R. Matzelle"
+            }
+        ],
+        "description": "PHPMailer is a full-featured email creation and transfer class for PHP"
+    },
+    {
+        "name": "rakit/validation",
+        "version": "v1.2.0",
+        "version_normalized": "1.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rakit/validation.git",
+            "reference": "d7710a2c8133d89b5640b79e832f370ad2d58767"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rakit/validation/zipball/d7710a2c8133d89b5640b79e832f370ad2d58767",
+            "reference": "d7710a2c8133d89b5640b79e832f370ad2d58767",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "php": ">=7.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6.5",
+            "squizlabs/php_codesniffer": "^3"
+        },
+        "time": "2019-07-10T03:20:16+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Rakit\\Validation\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Muhammad Syifa",
+                "email": "emsifa@gmail.com"
+            }
+        ],
+        "description": "PHP Laravel like standalone validation library"
+    }
+]
