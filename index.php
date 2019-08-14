@@ -1,8 +1,5 @@
 <?php
-	/* 
-		*OvenMVC framework 
-		*
-	*/
+	/** OvenMVC framework **/
 	$lib = 'lib';
 	$app = 'app';
 	require_once $lib . '/init.php';
