@@ -52,11 +52,22 @@ class Base_view
 			} else {
 				$last_link = $config['link_limit'] + 1;
 			}
-			for ($i; $i < $last_link; $i++) {
-				if ($total_pages >= $i) {
-					$link_arr[$i] = (string) $i;
+
+			if($total_pages == $page_number){
+				for ($i; $i < $last_link; $i++) {
+					if ($total_pages >= $i) {
+						$link_arr[$i] = (string) $i;
+					}
 				}
 			}
+			else{
+				for ($i; $i < $last_link; $i++) {
+					if ($total_pages >= $i) {
+						$link_arr[$i] = (string) $i;
+					}
+				}
+			}
+			
 			/* 
 			if($page_number == 1){
 				for($i=$page_number+1;$i<$page_number+$config['link_limit']+1;$i++){
