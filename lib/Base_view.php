@@ -54,11 +54,7 @@ class Base_view
 			}
 
 			if($total_pages == $page_number){
-				for ($i; $i < $last_link; $i++) {
-					if ($total_pages >= $i) {
-						$link_arr[$i] = (string) $i;
-					}
-				}
+				$link_arr[$total_pages] = (string) $total_pages;
 			}
 			else{
 				for ($i; $i < $last_link; $i++) {
