@@ -1,9 +1,12 @@
 <?php
-$config['base_url'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/ovenmvc';
+$config['base_url'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/oven';
 $config['db'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'ci_master',
+	'database' => 'posmenu',
 );
+$config['debug'] = TRUE;
 $config['rest_debug'] = TRUE;
+
+$config['script_path'] = '';

@@ -20,106 +20,35 @@ class Bootstrap
 {
     public function __construct()
     {  
-        $url_ = $_SERVER['REQUEST_URI'];
-        $sn_ = basename($_SERVER['SCRIPT_NAME']);
-        $url_ = $_SERVER['PHP_SELF'];
+        
+        $uri = uriDecoder();
 
-        if (file_exists(APPPATH . '/routes/web.php')) {
-            require_once APPPATH . '/routes/web.php';
-        }
-        if (file_exists(APPPATH . '/routes/api.php')) {
-            require_once APPPATH . '/routes/api.php';
-        }
-        if (isset($routes)) {
-            foreach ($routes as $key => $a) {
-
-                $pattern = str_replace(['(:num)', '(:alpha)', '(:any)'], ['[0-9]+', '[a-zA-Z]+', '[0-9a-zA-Z\-]+'], $key);
-
-                $data = preg_match('#\b' . $pattern . '\b#', $url_, $y);
-                if ($data) {
-
-                    $u_ = ltrim(explode($sn_, $url_)[1], '/');
-                    $tu_ = NULL;
-                    $tr_ = NULL;
-                    $u_ = explode('/', $u_);
-                    $r_ = explode('/', $key);
-                    $a_ = explode('/', $a);
-
-                    if ($r_) {
-                        foreach ($r_ as $k_ => $r) {
-
-                            if ($r == '(:num)' || $r == '(:alpha)' || $r == '(:any)') {
-                                $tr_[] = $u_[$k_];
-                            }
-                        }
-                    }
-                    if ($a_) {
-                        $x = 0;
-                        foreach ($a_ as $ax) {
-                            if (strchr($ax, '$')) {
-                                $tu_[] = $tr_[$x];
-                                $x++;
-                            } else {
-                                $tu_[] = $ax;
-                            }
-                        }
-                    }
-                    $url_ = $sn_ . '/' . implode('/', $tu_);
-                }
-            }
-        }
-        $rs_ = explode($sn_, $url_)[1];
-        $rs_ = explode('/', $rs_);
-        $d_ = NULL;
-        $c_ = NULL;
-        $cpath_ = NULL;
-        $m_ = NULL;
-        $p_ = NULL;
-        $x_ = 0;
-        foreach ($rs_ as $rs) {
-            if ($rs) {
-                $d_ .= '/' . $rs;
-                
-                if (!is_dir(APPPATH . '/controllers' . '/' . $d_)) {
-                    if ($x_ === 0) {
-                        $cpath_ = APPPATH . '/controllers' . str_replace($rs, ucfirst($rs), $d_) . '.php';
-                        $c_ = ucwords($rs);
-                    } else if ($x_ === 1) {
-                        $m_ = $rs;
-                    } else {
-                        $p_[] = $rs;
-                    }
-                    $x_++;
-                }
-            }
+        if (!$uri['class']) {
+            $uri['class_path'] = APPPATH . '/controllers' . $uri['directory'] . '/Home.php';
+            $uri['class'] = 'Home';
+            $uri['method'] = 'index';
         }
 
-        if (!$c_) {
-            $cpath_ = APPPATH . '/controllers' . $d_ . '/Home.php';
-            $c_ = 'Home';
-            $m_ = 'index';
+        if (!$uri['method']) {
+            $uri['method'] = 'index';
         }
 
-        if (!$m_) {
-            $m_ = 'index';
-        }
-
-        if (file_exists($cpath_)) {
+        if (file_exists($uri['class_path'])) {
 
             require_once(LIBPATH . '/Base_controller.php');
-            require_once($cpath_);
+            require_once($uri['class_path']);
 
-            $instance_ = new $c_;
+            $instance_ = new $uri['class'];
 
-            if (!method_exists($instance_, $m_)) {
-                echo 'Undefined method ' . $m_;
+            if (!method_exists($instance_, $uri['method'])) {
+                echo 'Undefined method ' . $uri['method'];
                 return false;
             }
 
-            if ($p_) {
-                call_user_func_array(array($instance_, $m_), $p_);
+            if ($uri['params']) {
+                call_user_func_array(array($instance_, $uri['method']), $uri['params']);
             } else {
-                call_user_func(array($instance_, $m_));
+                call_user_func(array($instance_, $uri['method']));
             }
         } else {
             echo 'Invalid routes check request uri first';

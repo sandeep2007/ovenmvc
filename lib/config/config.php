@@ -9,6 +9,9 @@ define('LIBPATH', $config['lib_path']);
 define('APPPATH', $config['app_path']);
 define('ENVIRONMENT', 'development');
 
+$config['debug'] = FALSE;
+$config['script_path'] = '/';
+
 require_once $config['lib_path'] . '/config/includes.php';
 
 
