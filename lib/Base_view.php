@@ -3,7 +3,7 @@ class Base_view
 {
 	public function __construct()
 	{ }
-	
+
 	public function copy($page, $data = NULL, $return = FALSE)
 	{
 
@@ -22,6 +22,16 @@ class Base_view
 		} else {
 			die("Error while loading page - $page");
 		}
+	}
+	
+	public function render($page, $data = NULL)
+	{
+		$this->copy($page, $data, FALSE);
+	}
+
+	public function get($page, $data = NULL)
+	{
+		return $this->copy($page, $data, TRUE);
 	}
 
 	public function uri_segment($segment)
