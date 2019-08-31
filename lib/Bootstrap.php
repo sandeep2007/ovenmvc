@@ -23,15 +23,7 @@ class Bootstrap
         
         $uri = uriDecoder();
 
-        if (!$uri['class']) {
-            $uri['class_path'] = APPPATH . '/controllers' . $uri['directory'] . '/Home.php';
-            $uri['class'] = 'Home';
-            $uri['method'] = 'index';
-        }
-
-        if (!$uri['method']) {
-            $uri['method'] = 'index';
-        }
+        debug($uri);
 
         if (file_exists($uri['class_path'])) {
 

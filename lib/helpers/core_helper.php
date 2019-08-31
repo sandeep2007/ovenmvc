@@ -3,7 +3,7 @@ if (!function_exists('uriDecoder')) {
     function uriDecoder()
     {
         $result = NULL;
-        $url_ = $_SERVER['REQUEST_URI'];
+        //$url_ = $_SERVER['REQUEST_URI'];
         $sn_ = basename($_SERVER['SCRIPT_NAME']);
         $url_ = $_SERVER['PHP_SELF'];
 
@@ -96,13 +96,22 @@ if (!function_exists('uriDecoder')) {
             }
         }
 
+        if (!$c_) {
+            $cpath_ = APPPATH . '/controllers' . ((rtrim($df_, '/')) ? rtrim($df_, '/') : '') . '/Home.php';
+            $c_ = 'Home';
+            $m_ = 'index';
+        }
+
+        if (!$m_) {
+            $m_ = 'index';
+        }
 
         $result = array(
             'class_path' => $cpath_,
+            'directory' => (rtrim($df_, '/')) ? rtrim($df_, '/') : '/',
             'class' => $c_,
             'method' => $m_,
             'params' => $p_,
-            'directory' => (rtrim($df_, '/')) ? rtrim($df_, '/') : '/',
         );
 
         return $result;
