@@ -3,7 +3,6 @@ if (!function_exists('uriDecoder')) {
     function uriDecoder()
     {
         $result = NULL;
-        //$url_ = $_SERVER['REQUEST_URI'];
         $sn_ = basename($_SERVER['SCRIPT_NAME']);
         $url_ = $_SERVER['PHP_SELF'];
 
@@ -18,26 +17,35 @@ if (!function_exists('uriDecoder')) {
         //     die('Invalid routes found');
         // }
 
-
-
+        //debug($GLOBALS);
+        //echo $url_.'</br>';
         if (isset($routes)) {
             foreach ($routes as $key => $a) {
 
                 $pattern = str_replace(['(:num)', '(:alpha)', '(:any)'], ['[0-9]+', '[a-zA-Z]+', '[0-9a-zA-Z\-]+'], $key);
                 $pattern = ltrim($pattern, '/');
+                $pattern = (!empty($pattern)) ? $pattern : NULL;
 
-                $data = preg_match('#\b' . $pattern . '\b#', $url_, $y);
+                $em_c = ltrim(explode($sn_, $url_)[1], '/');
+                $data = preg_match('#^' . $pattern . '$#', $em_c, $y);
 
                 $pattern = str_replace('(:default)', '/', $pattern);
+                $pattern = ltrim($pattern, '/');
                 //taks pending for default route
 
-                if (!empty($y[0])) {
+                if (!empty($y[0]) || (empty($em_c) && !$pattern)) {
 
-                    $u_ = ltrim(explode($sn_, $url_)[1], '/');
+                    //echo 'Data = '.($data);echo '<br/>';
+                    //echo 'Y = '.($y[0]);echo '<br/>';
+                    //echo 'EMC = '.($em_c);echo '<br/>';
+                    //echo 'url_ = '.($url_);echo '<br/>';
+                    //echo 'Pattern = '.($pattern);echo '<br/>';
+                    //$u_ = ltrim(explode($sn_, $url_)[1], '/');
+                    $u_ = $em_c;
                     $tu_ = [];
                     $tr_ = NULL;
                     $u_ = explode('/', $u_);
-                    $r_ = explode('/', $key);
+                    $r_ = explode('/', ltrim($key, '/'));
                     $a_ = explode('/', $a);
 
                     if ($r_) {
@@ -48,6 +56,8 @@ if (!function_exists('uriDecoder')) {
                             }
                         }
                     }
+                    //echo '<pre>';
+                    //print_r($tr_);
                     if ($a_) {
                         $x = 0;
                         foreach ($a_ as $ax) {
@@ -59,11 +69,12 @@ if (!function_exists('uriDecoder')) {
                             }
                         }
                     }
-                    $url_ = $sn_ . '' . implode('/', $tu_);
+                    // print_r($tu_);
+                    $url_ = $sn_ . '/' . implode('/', $tu_);
                 }
             }
         }
-
+        //echo $url_;
         $rs_ = explode($sn_, $url_)[1];
         $rs_ = explode('/', $rs_);
         $d_ = NULL;
@@ -259,25 +270,25 @@ if (!function_exists('checked')) {
 
 if (!function_exists('load_script')) {
 
-    function load_script($controller = NULL, $method = NULL, array $vars = NULL, array $library = NULL)
+    function load_script(array $vars = NULL, array $library = NULL, $controller = NULL, $method = NULL)
     {
         $data = NULL;
         $APP = &getInstance();
         $uri = uriDecoder();
-        if($controller == NULL){
+        if ($controller == NULL) {
             $controller = $uri['class'];
         }
-        if($method == NULL){
+        if ($method == NULL) {
             $method = $uri['method'];
         }
-        
+
         if (ENVIRONMENT === 'development' && $APP->config['debug'] === TRUE && !empty($controller) && !empty($method)) {
             echo "<script>console.warn('%c [Class: %c" . $controller . "%c, Method: %c" . $method . "%c]', 'color:orange', 'color:red;font-weight:bold', 'color:orange', 'color:red;font-weight:bold', 'color:orange');</script>";
         }
 
         //$root_path = $APP->root_path;
         $root_path = BASEPATH;
-         $path = $uri['directory'].'/';
+        $path = $uri['directory'] . '/';
 
         $script_path = (isset($APP->config['script_path'])) ?  $APP->config['script_path'] . "/" : "";
 
@@ -289,7 +300,7 @@ if (!function_exists('load_script')) {
 
         $data['js_obj']['var']['base_url'] = baseUrl();
         //$data['js_obj']['var']['version'] = $APP->config['version'];
-        
+
         if (file_exists($root_path . $script_path . 'scripts/lib.js')) {
             echo '<script type="text/javascript" src="' . baseUrl() . $script_path . 'scripts/lib.js"></script>';
         }
@@ -328,7 +339,7 @@ if (!function_exists('load_script')) {
             }
         }
 
-        echo '<script>js_obj = $.extend(js_obj, ' . json_encode($data['js_obj']['var']) . ');</script>';
+        echo '<script>js_obj = Object.assign(js_obj, ' . json_encode($data['js_obj']['var']) . ');</script>';
 
         if ((@$data['js_obj']['url']) ? count($data['js_obj']['url']) : 0) {
             foreach ($data['js_obj']['url'] as $key => $value) {
