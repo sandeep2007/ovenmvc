@@ -1,3 +1,4 @@
 # Don't track content of these folders
 vendor/
 composer.lock
+launch.json

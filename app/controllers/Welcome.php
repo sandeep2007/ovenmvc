@@ -6,16 +6,11 @@ class Welcome extends Controller
     {
         parent::__construct();
         $this->sessionInit();
-       
-        $this->sub_directory = 'admin';
     }
 
     public function index()
     {
-        echo 'home';
-        ?>
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <?php
+       
         //$this->view->render('welcome');
         // $app = getInstance();
         // $app->model->table = 'pr_merchant';
@@ -27,8 +22,6 @@ class Welcome extends Controller
         // echo '<pre>';
         // print_r($merchant);
         // print_r($banner);
-
-        
-        load_script(NULL,NULL,NULL,['abc']);
+        //load_script();
     }
 }

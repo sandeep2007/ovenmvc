@@ -23,7 +23,7 @@ class Bootstrap
         
         $uri = uriDecoder();
 
-        debug($uri);
+        //debug($uri);
 
         if (file_exists($uri['class_path'])) {
 
@@ -37,7 +37,7 @@ class Bootstrap
                 return false;
             }
 
-            if ($uri['params']) {
+            if ($uri['params']) { 
                 call_user_func_array(array($instance_, $uri['method']), $uri['params']);
             } else {
                 call_user_func(array($instance_, $uri['method']));
