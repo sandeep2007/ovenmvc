@@ -1,11 +1,11 @@
 <?php
 require_once BASEPATH . '/vendor/autoload.php';
 require_once APPPATH . '/config/config.php';
-require_once LIBPATH . '/helpers/helper_core.php';
+require_once LIBPATH . '/helpers/core_helper.php';
 require_once LIBPATH . '/Bootstrap.php';
 
-if(file_exists(APPPATH . '/helpers/helper_functions.php')){
-    require_once APPPATH . '/helpers/helper_functions.php';
+if(file_exists(APPPATH . '/helpers/functions_helper.php')){
+    require_once APPPATH . '/helpers/functions_helper.php';
 }
 
 if(file_exists(APPPATH . '/base/Model.php')){

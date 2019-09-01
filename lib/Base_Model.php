@@ -8,7 +8,7 @@ abstract class Base_model
 	public $table;
 	public $primary_key = 'id';
 	protected $msg;
-	public $blacklist;
+	public $blacklist = [];
 	public $debug = FALSE;
 	public $debug_mode = TRUE;
 	public $db_error;
@@ -71,7 +71,7 @@ abstract class Base_model
 		$this->_error = $error;
 		$this->_message = $message;
 		$this->_status = $status;
-		$this->_count = count(@$data['rows']);
+		$this->_count = (@$data['rows']) ? count($data['rows']) : 0;
 		$this->_total_count = $data['total_count'];
 		return $this;
 	}
@@ -237,10 +237,11 @@ abstract class Base_model
 			}
 			$this->db->group_end();
 		}
-		$total_count = $this->db->get($this->table);
-		if ($total_count) {
-			$total_count = $total_count->num_rows();
-		}
+		// $total_count = $this->db->get($this->table);
+		// if ($total_count) {
+		// 	$total_count = $total_count->num_rows();
+		// }
+		$total_count = $this->db->select("COUNT(*) as total_count")->get($this->table)->row()->total_count;
 		/* if(count($where)){ foreach($where as $wh){ $this->db->where($wh['key'], "'".$wh['value']."'", FALSE); } } */
 		if (gettype($where) == 'array') {
 			if (count($where)) {
@@ -307,7 +308,7 @@ abstract class Base_model
 		} else if (gettype($orders) == 'string') {
 			$this->db->order_by($orders);
 		} else {
-			$this->db->order_by('id', 'DESC');
+			$this->db->order_by($this->primary_key, 'DESC');
 		}
 		if ($limit) {
 			$this->db->limit($limit, $offset);
