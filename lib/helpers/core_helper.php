@@ -286,12 +286,14 @@ if (!function_exists('load_script')) {
             echo "<script>console.warn('%c [Class: %c" . $controller . "%c, Method: %c" . $method . "%c]', 'color:orange', 'color:red;font-weight:bold', 'color:orange', 'color:red;font-weight:bold', 'color:orange');</script>";
         }
 
-        //$root_path = $APP->root_path;
-        $root_path = BASEPATH;
-        $path = $uri['directory'] . '/';
+        echo '<script>js_obj = {};</script>';
 
-        $script_path = (isset($APP->config['script_path'])) ?  $APP->config['script_path'] . "/" : "";
+        $root_path = (BASEPATH) ? BASEPATH . '/' : '';
+        
+        $path = ($uri['directory'] !== '/') ? $uri['directory'] . '/' : '';
 
+       $script_path = ((!empty($APP->config['script_path'])) ? $APP->config['script_path'] . "/" : "");
+      
         if ($vars) {
             foreach ($vars as $key => $value) {
                 $data['js_obj']['var'][$key] = $value;
@@ -299,16 +301,16 @@ if (!function_exists('load_script')) {
         }
 
         $data['js_obj']['var']['base_url'] = baseUrl();
-        //$data['js_obj']['var']['version'] = $APP->config['version'];
+        $data['js_obj']['var']['version'] = $APP->config['version'];
 
         if (file_exists($root_path . $script_path . 'scripts/lib.js')) {
-            echo '<script type="text/javascript" src="' . baseUrl() . $script_path . 'scripts/lib.js"></script>';
+            echo '<script type="text/javascript" src="' . baseUrl() .'/'. $script_path . 'scripts/lib.js"></script>';
         }
 
         if ($library) {
             foreach ($library as $ct) {
                 if ($ct != 'lib' && file_exists($root_path . $script_path . 'scripts/' . $path . $ct . '.js')) {
-                    $data['js_obj']['url'][$ct] = baseUrl() . $script_path . 'scripts/' . $path . $ct . '.js';
+                    $data['js_obj']['url'][$ct] = baseUrl() .'/'. $script_path . 'scripts/' . $path . $ct . '.js';
                 } else {
                     //$data['js_obj']['url'][$ct] = baseUrl() . $script_path . 'scripts/' . $ct . '.js';
                 }
@@ -318,24 +320,24 @@ if (!function_exists('load_script')) {
         if ($controller != NULL && $method != NULL) {
 
             if (file_exists($root_path . $script_path . 'scripts/' . $path . 'main.js')) {
-                $data['js_obj']['url']['main'] = baseUrl() . $script_path . 'scripts/' . $path . 'main.js';
+                $data['js_obj']['url']['main'] = baseUrl() .'/'. $script_path . 'scripts/' . $path . 'main.js';
             }
             if (file_exists($root_path . $script_path . 'scripts/' . $path . $controller . '.js')) {
-                $data['js_obj']['url'][$controller] = baseUrl() . $script_path . 'scripts/' . $path . $controller . '.js';
+                $data['js_obj']['url'][$controller] = baseUrl() .'/'. $script_path . 'scripts/' . $path . $controller . '.js';
             }
             if (file_exists($root_path . $script_path . 'scripts/' . $path . $controller . '/' . $method . '.js')) {
-                $data['js_obj']['url'][$controller . '/' . $method] = baseUrl() . $script_path . 'scripts/' . $path . $controller . '/' . $method . '.js';
+                $data['js_obj']['url'][$controller . '/' . $method] = baseUrl() .'/'. $script_path . 'scripts/' . $path . $controller . '/' . $method . '.js';
             }
         } else if ($controller != NULL) {
             if (file_exists($root_path . $script_path . 'scripts/' . $path . 'main.js')) {
-                $data['js_obj']['url']['main'] = baseUrl() . $script_path . 'scripts/' . $path . 'main.js';
+                $data['js_obj']['url']['main'] = baseUrl() .'/'. $script_path . 'scripts/' . $path . 'main.js';
             }
             if (file_exists($root_path . $script_path . 'scripts/' . $path . $controller . '.js')) {
-                $data['js_obj']['url'][$controller] = baseUrl() . $script_path . 'scripts/' . $path . $controller . '.js';
+                $data['js_obj']['url'][$controller] = baseUrl().'/' . $script_path . 'scripts/' . $path . $controller . '.js';
             }
         } else if ($controller == NULL) {
             if (file_exists($root_path . $script_path . 'scripts/' . $path . 'main.js')) {
-                $data['js_obj']['url']['main'] = baseUrl() . $script_path . 'scripts/' . $path . 'main.js';
+                $data['js_obj']['url']['main'] = baseUrl() .'/'. $script_path . 'scripts/' . $path . 'main.js';
             }
         }
 
