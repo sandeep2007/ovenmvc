@@ -159,10 +159,10 @@ if (!function_exists('getModel')) {
             //$this->model = ModelInstance::init();       
         }
 
-        public function __destruct()
-        {
+        // public function __destruct()
+        // {
             
-        }
+        // }
 
         public static function &init(){ 
             return self::$instance;
