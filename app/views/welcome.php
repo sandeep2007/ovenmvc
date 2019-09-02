@@ -1,8 +1,9 @@
 <h1>Welcome to OvenMVC</h1>
-<p><strong>OvenMVC</strong> is a light weight PHP framework.</p>
+<p><strong>OvenMVC</strong> is a lightweight PHP framework.</p>
 
 <?php 
+//$oven = getInstance();
 $app = uriDecoder();
-load_script();
-debug($app);
+loadScript();
+//debug($app);
 ?>
