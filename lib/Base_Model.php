@@ -24,7 +24,6 @@ class Base_model
 
 	public function __construct()
 	{
-		
 		$this->config = getConfig();
 
 		$db_config = array(
