@@ -22,6 +22,6 @@ class Welcome extends Controller
         // echo '<pre>';
         // print_r($merchant);
         // print_r($banner);
-        load_script(NULL, ['abc']);
+        
     }
 }

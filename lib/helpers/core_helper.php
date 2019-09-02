@@ -7,10 +7,10 @@ if (!function_exists('uriDecoder')) {
         $url_ = $_SERVER['PHP_SELF'];
 
         if (file_exists(APPPATH . '/routes/web.php')) {
-            require_once APPPATH . '/routes/web.php';
+            require APPPATH . '/routes/web.php';
         }
         if (file_exists(APPPATH . '/routes/api.php')) {
-            require_once APPPATH . '/routes/api.php';
+            require APPPATH . '/routes/api.php';
         }
 
         // if(array_key_exists('/', $routes)){
@@ -18,8 +18,8 @@ if (!function_exists('uriDecoder')) {
         // }
 
         //debug($GLOBALS);
-        //echo $url_.'</br>';
-        if (isset($routes)) {
+       // echo $url_.'</br>';
+        if (isset($routes)) { 
             foreach ($routes as $key => $a) {
 
                 $pattern = str_replace(['(:num)', '(:alpha)', '(:any)'], ['[0-9]+', '[a-zA-Z]+', '[0-9a-zA-Z\-]+'], $key);
@@ -74,7 +74,7 @@ if (!function_exists('uriDecoder')) {
                 }
             }
         }
-        //echo $url_;
+       // echo $url_."<br/>";
         $rs_ = explode($sn_, $url_)[1];
         $rs_ = explode('/', $rs_);
         $d_ = NULL;
@@ -144,28 +144,31 @@ if (!function_exists('baseUrl')) {
 }
 
 if (!function_exists('getInstance')) {
+
+    require_once LIBPATH . '/Base_model.php';
+    require_once LIBPATH . '/Base_controller.php';
+
+    class ModelInstance extends Base_model
+    {
+        public function __construct()
+        {
+            parent::__construct();
+        }
+    }
+
+    class AppInstance extends Base_controller
+    {
+        public function __construct()
+        {
+            parent::__construct();
+            $this->config = $GLOBALS['config'];
+            $this->model = new ModelInstance();
+        }
+    } 
+    
     function &getInstance()
     {
-        require_once LIBPATH . '/Base_model.php';
-        require_once LIBPATH . '/Base_controller.php';
-
-        class ModelInstance extends  Base_model
-        {
-            public function __construct()
-            {
-                parent::__construct();
-            }
-        }
-
-        class AppInstance extends  Base_controller
-        {
-            public function __construct()
-            {
-                parent::__construct();
-                $this->config = $GLOBALS['config'];
-                $this->model = new ModelInstance();
-            }
-        }
+       
         $obj = new AppInstance();
         return $obj;
     }
