@@ -12,15 +12,17 @@ class Welcome extends Controller
     {
        
         $this->view->render('welcome');
-        // $app = getInstance();
+         $app =& getModel();
+         $app =& getModel();
+         
         // $app->model->table = 'pr_merchant';
-        // $merchant = $app->model->get(['limit' => 50])->data();
+       //  $merchant = $app->model->get(['limit' => 50])->data();
 
         // $app->model->table = 'pr_countries';
         // $app->model->primary_key = 'country_id';
         // $banner = $app->model->get(['limit' => 3])->data();
         // echo '<pre>';
-        // print_r($merchant);
+       // print_r($merchant);
         // print_r($banner);
         
     }

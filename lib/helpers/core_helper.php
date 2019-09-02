@@ -143,34 +143,67 @@ if (!function_exists('baseUrl')) {
     }
 }
 
-if (!function_exists('getInstance')) {
+if (!function_exists('getModel')) {
 
     require_once LIBPATH . '/Base_model.php';
-    require_once LIBPATH . '/Base_controller.php';
 
     class ModelInstance extends Base_model
     {
+        private static $instance;
         public function __construct()
         {
+            self::$instance =& $this;         
             parent::__construct();
+            $this->config = $GLOBALS['config'];
+            //new ModelInstance(); 
+            //$this->model = ModelInstance::init();       
         }
+
+        // public function __destruct()
+        // {
+            
+        // }
+
+        public static function &init(){ 
+            return self::$instance;
+        } 
     }
+
+    
+    function &getModel()
+    { 
+        new ModelInstance();
+        $o = ModelInstance::init();
+        return $o;
+    }
+}
+
+if (!function_exists('getInstance')) {
+
+    require_once LIBPATH . '/Base_controller.php';
 
     class AppInstance extends Base_controller
     {
+        private static $instance;
         public function __construct()
         {
+            self::$instance =& $this;         
             parent::__construct();
             $this->config = $GLOBALS['config'];
-            $this->model = new ModelInstance();
+            //new ModelInstance(); 
+            //$this->model = ModelInstance::init();       
+        }
+
+        public static function &init(){ 
+            return self::$instance;
         }
     } 
     
     function &getInstance()
-    {
-       
-        $obj = new AppInstance();
-        return $obj;
+    { 
+        new AppInstance();
+        $o = AppInstance::init();
+        return $o;
     }
 }
 
@@ -271,9 +304,9 @@ if (!function_exists('checked')) {
     }
 }
 
-if (!function_exists('load_script')) {
+if (!function_exists('loadScript')) {
 
-    function load_script(array $vars = NULL, array $library = NULL, $controller = NULL, $method = NULL)
+    function loadScript(array $vars = NULL, array $library = NULL, $controller = NULL, $method = NULL)
     {
         $data = NULL;
         $APP = &getInstance();
