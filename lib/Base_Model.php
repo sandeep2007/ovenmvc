@@ -2,7 +2,7 @@
 
 //use Evolution\CodeIgniterDB as CI;
 
-abstract class Base_model
+class Base_model
 {
 	protected $db;
 	public $table;
