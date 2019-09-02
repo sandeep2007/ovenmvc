@@ -94,7 +94,6 @@ if (!function_exists('uriDecoder')) {
 
                         $cpath_ = APPPATH . '/controllers' . str_replace($rs, ucfirst($rs), $d_) . '.php';
 
-
                         $df_ = str_replace($rs, '', $d_);
                         $c_ = ucwords($rs);
                     } else if ($x_ === 1) {
@@ -140,41 +139,6 @@ if (!function_exists('baseUrl')) {
     function baseUrl()
     {
         return $GLOBALS['config']['base_url'];
-    }
-}
-
-if (!function_exists('getModel')) {
-
-    require_once LIBPATH . '/Base_model.php';
-
-    class ModelInstance extends Base_model
-    {
-        private static $instance;
-        public function __construct()
-        {
-            self::$instance =& $this;         
-            parent::__construct();
-            $this->config = $GLOBALS['config'];
-            //new ModelInstance(); 
-            //$this->model = ModelInstance::init();       
-        }
-
-        // public function __destruct()
-        // {
-            
-        // }
-
-        public static function &init(){ 
-            return self::$instance;
-        } 
-    }
-
-    
-    function &getModel()
-    { 
-        new ModelInstance();
-        $o = ModelInstance::init();
-        return $o;
     }
 }
 
