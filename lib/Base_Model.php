@@ -1,6 +1,6 @@
 <?php
 
-use Evolution\CodeIgniterDB as CI;
+//use Evolution\CodeIgniterDB as CI;
 
 abstract class Base_model
 {
@@ -24,7 +24,7 @@ abstract class Base_model
 
 	public function __construct()
 	{
-
+		
 		$this->config = getConfig();
 
 		$db_config = array(
@@ -49,7 +49,7 @@ abstract class Base_model
 			'save_queries' => TRUE
 		);
 
-		$this->db = &CI\DB($db_config);
+		$this->db = &Evolution\CodeIgniterDB\DB($db_config);
 		// unset($this->config['db']);
 
 		if (isset($this->config['debug_mode'])) {
