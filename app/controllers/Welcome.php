@@ -12,8 +12,8 @@ class Welcome extends Controller
     {
        
         $this->view->render('welcome');
-         $app =& getModel();
-         $app =& getModel();
+         //$app =& getInstance();
+        
          
         // $app->model->table = 'pr_merchant';
        //  $merchant = $app->model->get(['limit' => 50])->data();
