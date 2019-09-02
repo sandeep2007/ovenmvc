@@ -43,7 +43,7 @@ class Bootstrap
                 call_user_func(array($instance_, $uri['method']));
             }
         } else {
-            echo 'Invalid routes check request uri first';
+            echo 'Invalid route';
         }
     }
 }
