@@ -11,7 +11,7 @@ class Welcome extends Controller
     public function index()
     {
        
-        //$this->view->render('welcome');
+        $this->view->render('welcome');
         // $app = getInstance();
         // $app->model->table = 'pr_merchant';
         // $merchant = $app->model->get(['limit' => 50])->data();

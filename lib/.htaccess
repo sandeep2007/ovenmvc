@@ -1,0 +1,9 @@
+Header Set Access-Control-Allow-Origin "*"
+<Limit GET POST PUT>
+Order Allow,Deny
+Deny from All
+</Limit>
+<Files ~ "\.(NULL)$">
+   order deny,allow
+   allow from all
+</Files>
