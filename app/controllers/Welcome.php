@@ -12,7 +12,7 @@ class Welcome extends Controller
     {
        
         $this->view->render('welcome');
-         $app =& getInstance();
+         //$app =& getInstance();
         
          
         // $app->model->table = 'pr_merchant';
