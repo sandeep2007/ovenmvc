@@ -25,4 +25,9 @@ abstract class Base_controller
     protected function sessionInit(){
         $this->session = new Base_session();
     }
+
+    protected function getModel(){
+        require_once LIBPATH . '/Base_model.php';
+        $this->model = new Base_model();
+    }
 }
