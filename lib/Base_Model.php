@@ -9,7 +9,6 @@ class Base_model extends Capsule
     public function __construct()
     {
         parent::__construct();
-        //$db = new DB;
 
         $this->addConnection([
             'driver'    => 'mysql',
@@ -22,16 +21,8 @@ class Base_model extends Capsule
             'prefix'    => '',
         ]);
 
-        // Set the event dispatcher used by Eloquent models... (optional)
-
         $this->setEventDispatcher(new Dispatcher(new Container));
-
-        // Make this Capsule instance available globally via static methods... (optional)
         $this->setAsGlobal();
-
-        // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 		$this->bootEloquent();
-		
-	
     }
 }
