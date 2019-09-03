@@ -16,8 +16,9 @@
 	"prefer-stable": true,
     "require": {
 		"php": ">=5.4.0",
-		"evolution/codeigniterdb":  "dev-master",
 		"phpmailer/phpmailer": "^6.0",
-		"rakit/validation": "^1.2"
+		"rakit/validation": "^1.2",
+        "illuminate/database": "^5.8",
+        "illuminate/events": "^5.8"
 	}
 }
