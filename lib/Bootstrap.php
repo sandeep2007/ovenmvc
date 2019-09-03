@@ -25,9 +25,13 @@ class Bootstrap
         //debug($uri);
 
         if (file_exists($uri['class_path'])) {
-
+            $config =& getConfig();
             require_once(LIBPATH . '/Base_controller.php');
             require_once($uri['class_path']);
+
+            if($config['database']){
+                new DB;
+            }
 
             $instance_ = new $uri['class'];
 
@@ -35,7 +39,7 @@ class Bootstrap
                 echo 'Undefined method ' . $uri['method'];
                 return false;
             }
-
+    
             if ($uri['params']) {
                 call_user_func_array(array($instance_, $uri['method']), $uri['params']);
             } else {
@@ -55,6 +59,18 @@ function &getConfig()
 function &getInstance()
 {
     return Base_controller::init();
+}
+
+function &getModel()
+{
+    $config =& getConfig();
+    if($config['database']){
+         $m = new DB;
+         return $m;
+    }
+    else{
+        return NULL;
+    }
 }
 
 
