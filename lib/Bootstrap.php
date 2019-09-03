@@ -1,12 +1,5 @@
 <?php
 spl_autoload_register(function ($resource) {
-    if (file_exists(APPPATH . '/models/' . $resource . '.php')) {
-        include APPPATH . '/models/' . $resource . '.php';
-    }
-    if (file_exists(APPPATH . '/libraries/' . $resource . '.php')) {
-        include APPPATH . '/libraries/' . $resource . '.php';
-    }
-
     if (file_exists(LIBPATH . '/' . $resource . '.php')) {
         include LIBPATH . '/' . $resource . '.php';
     }
@@ -14,13 +7,19 @@ spl_autoload_register(function ($resource) {
     if (file_exists(LIBPATH . '/libraries/' . $resource . '.php')) {
         include LIBPATH . '/libraries/' . $resource . '.php';
     }
+    if (file_exists(APPPATH . '/models/' . $resource . '.php')) {
+        include APPPATH . '/models/' . $resource . '.php';
+    }
+    if (file_exists(APPPATH . '/libraries/' . $resource . '.php')) {
+        include APPPATH . '/libraries/' . $resource . '.php';
+    }
 });
 
 class Bootstrap
 {
     public function __construct()
-    {  
-        
+    {
+
         $uri = uriDecoder();
 
         //debug($uri);
@@ -37,7 +36,7 @@ class Bootstrap
                 return false;
             }
 
-            if ($uri['params']) { 
+            if ($uri['params']) {
                 call_user_func_array(array($instance_, $uri['method']), $uri['params']);
             } else {
                 call_user_func(array($instance_, $uri['method']));
@@ -47,3 +46,15 @@ class Bootstrap
         }
     }
 }
+
+function &getConfig()
+{
+    return $GLOBALS['config'];
+}
+
+function &getInstance()
+{
+    return Base_controller::init();
+}
+
+

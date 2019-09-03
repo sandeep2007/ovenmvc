@@ -1,4 +1,5 @@
 <?php
+
 if (!function_exists('uriDecoder')) {
     function uriDecoder()
     {
@@ -128,12 +129,7 @@ if (!function_exists('uriDecoder')) {
     }
 }
 
-if (!function_exists('getConfig')) {
-    function getConfig()
-    {
-        return $GLOBALS['config'];
-    }
-}
+
 
 if (!function_exists('baseUrl')) {
     function baseUrl()
@@ -142,34 +138,7 @@ if (!function_exists('baseUrl')) {
     }
 }
 
-if (!function_exists('getInstance')) {
 
-    require_once LIBPATH . '/Base_controller.php';
-
-    class AppInstance extends Base_controller
-    {
-        private static $instance;
-        public function __construct()
-        {
-            self::$instance =& $this;         
-            parent::__construct();
-            $this->config = $GLOBALS['config'];
-            //new ModelInstance(); 
-            //$this->model = ModelInstance::init();       
-        }
-
-        public static function &init(){ 
-            return self::$instance;
-        }
-    } 
-    
-    function &getInstance()
-    { 
-        new AppInstance();
-        $o = AppInstance::init();
-        return $o;
-    }
-}
 
 if (!function_exists('debug')) {
 

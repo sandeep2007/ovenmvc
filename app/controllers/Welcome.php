@@ -39,4 +39,6 @@ class Welcome extends Controller
         // print_r($banner);
 
     }
+
+ 
 }
