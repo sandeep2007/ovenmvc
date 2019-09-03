@@ -1,9 +1,10 @@
 <?php
+
 use Illuminate\Database\Capsule\Manager as Capsule;
 use Illuminate\Events\Dispatcher;
 use Illuminate\Container\Container;
 
-class Base_model extends Capsule
+class DB extends Capsule
 {
 
     public function __construct()
@@ -30,8 +31,6 @@ class Base_model extends Capsule
         $this->setAsGlobal();
 
         // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
-		$this->bootEloquent();
-		
-	
+        $this->bootEloquent();
     }
 }
