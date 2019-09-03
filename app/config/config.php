@@ -6,7 +6,7 @@ $config['db'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
 	'password' => '',
-	'database' => 'posmenu',
+	'database' => 'data_store',
 );
 $config['debug'] = TRUE;
 $config['rest_debug'] = TRUE;

@@ -1,10 +1,9 @@
 <?php
-
-class Model extends Illuminate\Database\Eloquent\Model
-{ 
+class Test_model2 extends Model
+{
     public function __construct()
     {
         parent::__construct();
-        new Base_model;
+        $this->table = 'users';
     }
 }

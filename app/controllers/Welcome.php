@@ -1,5 +1,4 @@
 <?php
-
 class Welcome extends Controller
 {
     public function __construct()
@@ -16,13 +15,12 @@ class Welcome extends Controller
         $db = new DB();
         //$users = $db->table('pr_merchant')->select(['company_name', 'email'])->where('id', '23')->limit(100)->get();
 
-        //$users = DB::select("select company_name from pr_merchant order by id DESC limit 1");
+        $users = DB::select("select company_name from pr_merchant order by id DESC limit 1");
 
-        //$obj = new Test_model();
+        //new Base_model();
 
-
-        // echo '<pre>';
-        //print_r(Test_model::limit(2)->get());
+        //echo '<pre>';
+       // print_r(Test_model::limit(2)->get());
         
         //print_r($obj->get());
         //$app =& getInstance();
@@ -36,7 +34,9 @@ class Welcome extends Controller
         // $banner = $app->model->get(['limit' => 3])->data();
         // echo '<pre>';
         // print_r($merchant);
-        // print_r($banner);
+         print_r($users);
 
     }
+
+ 
 }
