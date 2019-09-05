@@ -11,6 +11,5 @@ class Welcome extends Controller
     {
 
         $this->view->render('welcome');
-
     }
 }
