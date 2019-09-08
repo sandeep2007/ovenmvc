@@ -1,2 +1,2 @@
 <?php
-$routes['(:default)'] = 'welcome/index';
+$routes['/'] = 'welcome/index';
