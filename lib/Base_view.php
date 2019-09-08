@@ -13,7 +13,7 @@ class Base_view
 			}
 
 			if ($return === TRUE) {
-				ob_clean();
+				ob_start();
 				include('app/views/' . $page . '.php');
 				return ob_get_clean();
 			} else {
