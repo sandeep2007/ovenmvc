@@ -12,6 +12,7 @@ define('VERSION', '0.0.8');
 
 $config['debug'] = FALSE;
 $config['script_path'] = '/';
+$config['database'] = FALSE;
 
 require_once $config['lib_path'] . '/config/includes.php';
 
