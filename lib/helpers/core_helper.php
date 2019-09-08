@@ -23,11 +23,11 @@ if (!function_exists('uriDecoder')) {
         if (isset($routes)) { 
             foreach ($routes as $key => $a) {
 
-                $pattern = str_replace(['(:num)', '(:alpha)', '(:any)'], ['[0-9]+', '[a-zA-Z]+', '[0-9a-zA-Z\-]+'], $key);
+                $pattern = str_replace(['(:num)', '(:alpha)', '(:any)'], ['[0-9]+', '[a-zA-Z]+', '[0-9a-zA-Z\-]+'], trim($key,'/'));
                 $pattern = ltrim($pattern, '/');
                 $pattern = (!empty($pattern)) ? $pattern : NULL;
 
-                $em_c = ltrim(explode($sn_, $url_)[1], '/');
+                $em_c = trim(explode($sn_, $url_)[1], '/');
                 $data = preg_match('#^' . $pattern . '$#', $em_c, $y);
 
                 $pattern = str_replace('(:default)', '/', $pattern);
@@ -46,8 +46,8 @@ if (!function_exists('uriDecoder')) {
                     $tu_ = [];
                     $tr_ = NULL;
                     $u_ = explode('/', $u_);
-                    $r_ = explode('/', ltrim($key, '/'));
-                    $a_ = explode('/', $a);
+                    $r_ = explode('/', trim($key, '/'));
+                    $a_ = explode('/', trim($a, '/'));
 
                     if ($r_) {
                         foreach ($r_ as $k_ => $r) {
@@ -245,10 +245,10 @@ if (!function_exists('loadScript')) {
         $APP = &getInstance();
         $uri = uriDecoder();
         if ($controller == NULL) {
-            $controller = $uri['class'];
+            $controller = strtolower($uri['class']);
         }
         if ($method == NULL) {
-            $method = $uri['method'];
+            $method = strtolower($uri['method']);
         }
 
         if (ENVIRONMENT === 'development' && $APP->config['debug'] === TRUE && !empty($controller) && !empty($method)) {
