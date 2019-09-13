@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Welcome to OvenMVC</h1>
+    <h1>Welcome to <?php echo $app_name; ?></h1>
     <p><strong>OvenMVC</strong> is a lightweight PHP framework.</p>
 </body>
 
