@@ -4,12 +4,17 @@ abstract class Base_controller
 {
     private static $instance;
     protected $session;
+    protected $data;
     public function __construct()
     {
         self::$instance =& $this;  
+        $this->data = NULL;
         $this->view = new Base_view();
         $this->request = new Base_request();
         $this->config =& getConfig();
+        if ($this->config['session']) {
+            $this->session = new Base_session();
+        }
     }
 
     public static function &init(){ 
@@ -25,10 +30,6 @@ abstract class Base_controller
         }
         return $config;
 
-    }
-
-    protected function sessionInit(){
-        $this->session = new Base_session();
     }
 
     protected function getModel(){

@@ -7,12 +7,19 @@ $config['base_url'] = '';
 define('BASEPATH', $config['base_path']);
 define('LIBPATH', $config['lib_path']);
 define('APPPATH', $config['app_path']);
-define('ENVIRONMENT', 'development');
 define('VERSION', '0.0.8');
 
 $config['debug'] = FALSE;
 $config['script_path'] = '/';
 $config['database'] = FALSE;
+$config['session'] = FALSE;
+
+$config['logger'] = FALSE;
+$config['log_threshold'] = 0;
+$config['log_path'] = '';
+$config['log_file_extension'] = '';
+$config['log_file_permissions'] = 0644;
+$config['log_date_format'] = 'Y-m-d H:i:s';
 
 require_once $config['lib_path'] . '/config/includes.php';
 

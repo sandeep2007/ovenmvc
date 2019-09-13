@@ -3,10 +3,10 @@ class Base_session
 {
     public function __construct()
     {
-        session_name('ovenmvc');
-        session_set_cookie_params(strtotime('+30 minutes', 0));
-        session_start();
-        session_regenerate_id(true);
+        //session_name('ovenmvc');
+        //session_set_cookie_params(strtotime('+30 minutes', 0));
+        //session_start();
+        //session_regenerate_id(true);
     }
 
     public function get($key = NULL)

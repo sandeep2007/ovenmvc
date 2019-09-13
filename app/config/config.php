@@ -10,4 +10,11 @@ $config['db'] = array(
 );
 $config['debug'] = TRUE;
 $config['database'] = TRUE;
+$config['session'] = TRUE;
 $config['script_path'] = 'app';
+
+$config['log_threshold'] = [1,5];
+$config['log_path'] = '';
+$config['log_file_extension'] = '';
+$config['log_file_permissions'] = 0644;
+$config['log_date_format'] = 'Y-m-d H:i:s';
