@@ -129,7 +129,24 @@ if (!function_exists('uriDecoder')) {
     }
 }
 
+if (!function_exists('isXHR')) {
+    function isXHR()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+}
 
+if (!function_exists('redirect')) {
+    function redirect($path)
+    {
+        header('Location: '.$path);
+        exit(1);
+    }
+}
 
 if (!function_exists('baseUrl')) {
     function baseUrl()
