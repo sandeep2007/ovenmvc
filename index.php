@@ -5,4 +5,5 @@ define('ENVIRONMENT', isset($_SERVER['OVEN_ENV']) ? $_SERVER['OVEN_ENV'] : 'deve
 
 $lib = 'lib';
 $app = 'app';
+
 require_once $lib . '/init.php';
