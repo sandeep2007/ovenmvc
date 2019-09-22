@@ -12,7 +12,7 @@ class Base_request
 	public function get($key = NULL)
 	{
 		// if ($key) {
-		//  return (isset($_GET[$key])) ? $_GET[$key] : NULL;
+		// 	return (isset($_GET[$key])) ? $_GET[$key] : NULL;
 		// }
 		// return $_GET;
 		return $this->_clean_array($_GET, $key);
@@ -33,22 +33,41 @@ class Base_request
 		}
 	}
 
-	protected function _clean_array($array_list, $index = NULL)
+	protected function _clean_array($array, $index = NULL)
 	{
-		if (isset($array_list[$index])) {
-			$array_list = $array_list[$index];
-		}
+		isset($index) or $index = array_keys($array);
 
-		$op = array();
-		foreach ($array_list as $key => $array) {
-
-			if (is_array($array)) {
-				$op[$key] = _clean_array($array, $key);
-			} else {
-
-				$op[$key] = escape_string($array);
+		if (is_array($index)) {
+			$output = array();
+			foreach ($index as $key) {
+				$output[$key] = $this->_clean_array($array, $key);
 			}
+
+			return $output;
 		}
-		return $op;
+
+		if (isset($array[$index])) {
+			$value = escape_string($array[$index]);
+		} elseif (($count = preg_match_all('/(?:^[^\[]+)|\[[^]]*\]/', $index, $matches)) > 1) 
+		{
+			$value = $array;
+			for ($i = 0; $i < $count; $i++) {
+				$key = trim($matches[0][$i], '[]');
+				if ($key === '')
+				{
+					break;
+				}
+
+				if (isset($value[$key])) {
+					$value = escape_string($value[$key]);
+				} else {
+					return NULL;
+				}
+			}
+		} else {
+			return NULL;
+		}
+
+		return $value;
 	}
 }
