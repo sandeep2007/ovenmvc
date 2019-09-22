@@ -1,5 +1,5 @@
 <?php
-
+$config['time_zone'] = 'Asia/Kolkata';
 $config['version'] = '0.0.1';
 $config['base_url'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/oven';
 $config['db'] = array(

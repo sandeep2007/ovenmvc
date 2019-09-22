@@ -1,11 +1,19 @@
 <?php
+
+date_default_timezone_set($config['time_zone']);
 if ($config['session']) {
     session_name('ovenmvc');
     session_set_cookie_params(strtotime('+30 minutes', 0));
     session_start();
-    //if (!isXHR()) {
-    //session_regenerate_id(true);  
-    //}
+    // $old_sess_id = session_id();
+    session_regenerate_id();
+    // $new_sess_id = session_id();
+    // session_commit();
+    // session_id($old_sess_id);
+    // session_start();
+    // session_destroy();
+    // session_id($new_sess_id);
+    // session_start();
 }
 spl_autoload_register(function ($resource) {
     if (file_exists(LIBPATH . '/' . $resource . '.php')) {
@@ -29,8 +37,6 @@ class Bootstrap
     {
 
         $uri = uriDecoder();
-
-        //debug($uri);
 
         if (file_exists($uri['class_path'])) {
             $config = &getConfig();
@@ -79,29 +85,20 @@ function &getModel()
         return NULL;
     }
 }
+if (!function_exists('is_cli')) {
+    function is_cli()
+    { 
+        return FALSE;
+    }
+}
 
 if (!function_exists('is_really_writable')) {
-    /**
-     * Tests for file writability
-     *
-     * is_writable() returns TRUE on Windows servers when you really can't write to
-     * the file, based on the read-only attribute. is_writable() is also unreliable
-     * on Unix servers if safe_mode is on.
-     *
-     * @link	https://bugs.php.net/bug.php?id=54709
-     * @param	string
-     * @return	bool
-     */
     function is_really_writable($file)
     {
-        // If we're on a Unix server with safe_mode off we call is_writable
         if (DIRECTORY_SEPARATOR === '/' && (is_php('5.4') or !ini_get('safe_mode'))) {
             return is_writable($file);
         }
 
-        /* For Windows servers and safe_mode "on" installations we'll actually
-		 * write a file then read it. Bah...
-		 */
         if (is_dir($file)) {
             $file = rtrim($file, '/') . '/' . md5(mt_rand());
             if (($fp = @fopen($file, 'ab')) === FALSE) {
@@ -135,19 +132,12 @@ if (!function_exists('log_message')) {
 }
 
 if (!function_exists('set_status_header')) {
-    /**
-     * Set HTTP Status Header
-     *
-     * @param	int	the status code
-     * @param	string
-     * @return	void
-     */
     function set_status_header($code = 200, $text = '')
     {
-        // if (is_cli())
-        // {
-        // 	return;
-        // }
+        if (is_cli())
+        {
+        	return;
+        }
 
         if (empty($code) or !is_numeric($code)) {
             show_error('Status codes must be numeric', 500);
@@ -229,39 +219,14 @@ if (!function_exists('set_status_header')) {
 
 
 if (!function_exists('_error_handler')) {
-    /**
-     * Error Handler
-     *
-     * This is the custom error handler that is declared at the (relative)
-     * top of CodeIgniter.php. The main reason we use this is to permit
-     * PHP errors to be logged in our own log files since the user may
-     * not have access to server logs. Since this function effectively
-     * intercepts PHP errors, however, we also need to display errors
-     * based on the current error_reporting level.
-     * We do that with the use of a PHP error template.
-     *
-     * @param	int	$severity
-     * @param	string	$message
-     * @param	string	$filepath
-     * @param	int	$line
-     * @return	void
-     */
     function _error_handler($severity, $message, $filepath, $line)
     {
         $is_error = (((E_ERROR | E_PARSE | E_COMPILE_ERROR | E_CORE_ERROR | E_USER_ERROR) & $severity) === $severity);
 
-        // When an error occurred, set the status header to '500 Internal Server Error'
-        // to indicate to the client something went wrong.
-        // This can't be done within the $_error->show_php_error method because
-        // it is only called when the display_errors flag is set (which isn't usually
-        // the case in a production environment) or when errors are ignored because
-        // they are above the error_reporting threshold.
         if ($is_error) {
             set_status_header(500);
         }
 
-        // Should we ignore the error? We'll get the current error_reporting
-        // level and add its bits with the severity bits to find out.
         if (($severity & error_reporting()) !== $severity) {
             return;
         }
@@ -269,65 +234,32 @@ if (!function_exists('_error_handler')) {
         $_error = new Base_exceptions;
         $_error->log_exception($severity, $message, $filepath, $line);
 
-        // Should we display the error?
         if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors'))) {
             $_error->show_php_error($severity, $message, $filepath, $line);
         }
-
-        // If the error is fatal, the execution of the script should be stopped because
-        // errors can't be recovered from. Halting the script conforms with PHP's
-        // default error handling. See http://www.php.net/manual/en/errorfunc.constants.php
         if ($is_error) {
-            exit(1); // EXIT_ERROR
+            exit(1);
         }
     }
 }
 
-// ------------------------------------------------------------------------
-
 if (!function_exists('_exception_handler')) {
-    /**
-     * Exception Handler
-     *
-     * Sends uncaught exceptions to the logger and displays them
-     * only if display_errors is On so that they don't show up in
-     * production environments.
-     *
-     * @param	Exception	$exception
-     * @return	void
-     */
     function _exception_handler($exception)
     {
         $_error = new Base_exceptions;
         $_error->log_exception('error', 'Exception: ' . $exception->getMessage(), $exception->getFile(), $exception->getLine());
 
-        //is_cli() OR set_status_header(500);
-        set_status_header(500);
-        // Should we display the error?
+        is_cli() OR set_status_header(500);
+       
         if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors'))) {
             $_error->show_exception($exception);
         }
 
-        exit(1); // EXIT_ERROR
+        exit(1); 
     }
 }
 
-// ------------------------------------------------------------------------
-
 if (!function_exists('_shutdown_handler')) {
-    /**
-     * Shutdown Handler
-     *
-     * This is the shutdown handler that is declared at the top
-     * of CodeIgniter.php. The main reason we use this is to simulate
-     * a complete custom exception handler.
-     *
-     * E_STRICT is purposively neglected because such events may have
-     * been caught. Duplication or none? None is preferred for now.
-     *
-     * @link	http://insomanic.me.uk/post/229851073/php-trick-catching-fatal-errors-e-error-with-a
-     * @return	void
-     */
     function _shutdown_handler()
     {
         $last_error = error_get_last();
