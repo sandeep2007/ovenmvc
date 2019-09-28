@@ -1,63 +1,54 @@
 # ovenmvc
 
-Documentation for The OvenMVC framework
+# Open Source Starter Repo
 
-Project Title
-One Paragraph of project description goes here
+This repository contains templates for project documentation, ensuring necessary
+legal and contributor documentation is explicit. All sections below in this `README.md`
+should be considered a template for a typical project `README.md`.
 
-Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## PROJECT NAME
 
-Prerequisites
-What things you need to install the software and how to install them
+A short description of what this project does.
 
-Give examples
-Installing
-A step by step series of examples that tell you how to get a development env running
+## Goals
 
-Say what the step will be
+It is a good idea to provide a mission statement for your project, enshrining
+what the project wants to accomplish so that as more people join your project
+everyone can work in alignment.
 
-Give the example
-And repeat
+## Non-Goals
 
-until finished
-End with an example of getting some data out of the system or using it for a little demo
+It is also a good idea to declare what are _not_ goals of the project to prevent
+potential feature creep.
 
-Running the tests
-Explain how to run the automated tests for this system
+### Installation
 
-Break down into end to end tests
-Explain what these tests test and why
+Instructions for how to download/install the code onto your machine.
 
-Give an example
-And coding style tests
-Explain what these tests test and why
+Example:
+```
+npm install myProject --save
+```
 
-Give an example
-Deployment
-Add additional notes about how to deploy this on a live system
+### Usage
 
-Built With
-Dropwizard - The web framework used
-Maven - Dependency Management
-ROME - Used to generate RSS Feeds
-Contributing
-Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+Usage instructions for your code.
 
-Versioning
-We use SemVer for versioning. For the versions available, see the tags on this repository.
+Example:
 
-Authors
-Billie Thompson - Initial work - PurpleBooth
-See also the list of contributors who participated in this project.
+```
+var myMod = require('mymodule');
 
-License
-This project is licensed under the MIT License - see the LICENSE.md file for details
+myMod.foo('hi');
+```
 
-Acknowledgments
-Hat tip to anyone whose code was used
-Inspiration
-etc
+### Contributing
+
+Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING.md) for more information.
+
+### Licensing
+
+This project is licensed under the Apache V2 License. See [LICENSE](LICENSE) for more information.
 
 <strong>Installing OvenMVC via composer</strong><br/>
 <code>composer create-project sandeep2007/ovenmvc</code>
