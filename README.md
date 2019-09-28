@@ -19,8 +19,8 @@ Instructions for how to download/install the code onto your machine.
 
 Example:
 ```
-<strong>Installing OvenMVC via composer</strong><br/>
-<code>composer create-project sandeep2007/ovenmvc</code>
+___Installing OvenMVC via composer____
+composer create-project sandeep2007/ovenmvc
 ```
 
 ### Usage
