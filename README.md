@@ -19,7 +19,8 @@ Instructions for how to download/install the code onto your machine.
 
 Example:
 ```
-npm install myProject --save
+<strong>Installing OvenMVC via composer</strong><br/>
+<code>composer create-project sandeep2007/ovenmvc</code>
 ```
 
 ### Usage
@@ -42,5 +43,4 @@ Contributions are welcomed! Read the [Contributing Guide](./.github/CONTRIBUTING
 
 This project is licensed under the Apache V2 License. See [LICENSE](LICENSE) for more information.
 
-<strong>Installing OvenMVC via composer</strong><br/>
-<code>composer create-project sandeep2007/ovenmvc</code>
+
