@@ -7,6 +7,7 @@ Due to a simple setup process and highly illustrated documentation, it's ideal f
 
 Developers should utilize **OvenMVC**  for various reasons, but the number one reason is for speeding up the development process. 
 Reusing code across similar projects will save the developer a substantial amount of time and effort. 
+
 OvenMVC offers pre-built modules for performing tedious coding tasks, so the developer can spend their time on developing
 the actual application rather than re-building the foundation with each project.
 
