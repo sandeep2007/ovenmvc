@@ -6,6 +6,7 @@
         "framework",
         "ovenmvc"
 	],
+	"license": "MIT",
     "authors": [
         {
             "name": "Sandeep Kumar",
