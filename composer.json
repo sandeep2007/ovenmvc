@@ -5,7 +5,8 @@
 	"keywords": [
         "framework",
         "ovenmvc"
-	],
+    ],
+    "license": "MIT",
     "authors": [
         {
             "name": "Sandeep Kumar",
@@ -15,7 +16,7 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
     "require": {
-		"php": ">=5.4.0",
+		"php": ">=7.0.0",
 		"phpmailer/phpmailer": "^6.0",
 		"rakit/validation": "^1.2",
         "illuminate/database": "^5.8",
