@@ -22,6 +22,6 @@ $config['log_file_extension'] = '';
 $config['log_file_permissions'] = 0644;
 $config['log_date_format'] = 'Y-m-d H:i:s';
 
-require_once $config['lib_path'] . '\config\includes.php';
+require_once $config['lib_path'] . '/config/includes.php';
 
 

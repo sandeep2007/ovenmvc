@@ -1,0 +1,9 @@
+# image:
+#  file: .gitpod.Dockerfile
+# This is to get rid of the annoying popup feel free to leave this out
+#ports:
+#  - port: 9000
+#    onOpen: ignore
+#vscode:
+#  extensions:
+#    - felixfbecker.php-debug@1.13.0:WX8Y3EpQk3zgahy41yJtNQ==

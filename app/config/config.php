@@ -1,7 +1,9 @@
 <?php
 $config['time_zone'] = 'Asia/Kolkata';
 $config['version'] = '0.0.1';
-$config['base_url'] = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '/oven';
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
+// $config['base_url'] = @$_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['SERVER_NAME'] . '';
+$config['base_url'] = $protocol.$_SERVER['SERVER_NAME'].'/';
 $config['db'] = array(
 	'hostname' => 'localhost',
 	'username' => 'root',
@@ -9,7 +11,7 @@ $config['db'] = array(
 	'database' => 'data_store',
 );
 $config['debug'] = TRUE;
-$config['database'] = TRUE;
+$config['database'] = FALSE;
 $config['session'] = TRUE;
 $config['script_path'] = 'app';
 
