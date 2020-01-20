@@ -14,7 +14,7 @@ if (!function_exists('uriDecoder')) {
     {
         $result = NULL;
         $sn_ = basename($_SERVER['SCRIPT_NAME']);
-        $url_ = $_SERVER['PHP_SELF'];
+        $url_ = str_replace('-', '_', $_SERVER['PHP_SELF']);
 
         if (file_exists(APPPATH . '/routes/web.php')) {
             require APPPATH . '/routes/web.php';
