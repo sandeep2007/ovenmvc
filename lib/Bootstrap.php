@@ -65,8 +65,16 @@ class Bootstrap
     }
 }
 
-function &getConfig()
+function &getConfig($key = null)
 {
+    if($key){
+        if(isset($GLOBALS['config'][$key])){
+            return $GLOBALS['config'][$key];
+        }
+        else{
+            return null;
+        }
+    }
     return $GLOBALS['config'];
 }
 
