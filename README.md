@@ -12,8 +12,7 @@ OvenMVC offers pre-built modules for performing tedious coding tasks, so the dev
 the actual application rather than re-building the foundation with each project.
 
 Stability is another big reason for developers to utilize ovenmvc.
-While simplicity is one of OvenMVC’s greatest assets and the reason many people prefer to use this, it can also be one of
-its biggest downfalls. 
+While simplicity is one of OvenMVC’s greatest assets and the reason many people prefer to use this, it can also be one of its biggest downfalls. 
 
 When working on a project with tight deadlines, utilizing a OvenMVC is a huge benefit that can greatly speed up the coding process.
 So if you’re in a time crunch, OvenMVC can be very beneficial to you. 

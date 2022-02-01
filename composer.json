@@ -5,7 +5,7 @@
 	"keywords": [
         "framework",
         "ovenmvc"
-    ],
+	],
     "license": "MIT",
     "authors": [
         {
@@ -16,10 +16,10 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
     "require": {
-	"php": ">=7.2.0",
+  "php": ">=7.2.0",
 	"phpmailer/phpmailer": "^6.0",
 	"rakit/validation": "^1.2",
-        "illuminate/database": "6.20.26"
-        "illuminate/events": "^5.8"
+  "illuminate/database": "6.20.26"
+  "illuminate/events": "^5.8"
 	}
 }

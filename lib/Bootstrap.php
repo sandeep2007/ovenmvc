@@ -3,17 +3,8 @@
 date_default_timezone_set($config['time_zone']);
 if ($config['session']) {
     session_name('ovenmvc');
-    session_set_cookie_params(strtotime('+30 minutes', 0));
     session_start();
-    // $old_sess_id = session_id();
     session_regenerate_id();
-    // $new_sess_id = session_id();
-    // session_commit();
-    // session_id($old_sess_id);
-    // session_start();
-    // session_destroy();
-    // session_id($new_sess_id);
-    // session_start();
 }
 spl_autoload_register(function ($resource) {
     if (file_exists(LIBPATH . '/' . $resource . '.php')) {
@@ -65,8 +56,16 @@ class Bootstrap
     }
 }
 
-function &getConfig()
+function &getConfig($key = null)
 {
+    if($key){
+        if(isset($GLOBALS['config'][$key])){
+            return $GLOBALS['config'][$key];
+        }
+        else{
+            return null;
+        }
+    }
     return $GLOBALS['config'];
 }
 
